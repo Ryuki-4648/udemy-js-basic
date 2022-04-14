@@ -33,4 +33,3 @@ const b =() => {
 
 //console.log(a);
 b();
-ba();
