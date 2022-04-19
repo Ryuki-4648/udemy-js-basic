@@ -85,3 +85,29 @@ if( true ) {
   // letやconstを使うと、このif文の中でブロックスコープが生成される
   // varだと無視されるので使わないこと！！！！！
 }
+
+
+// varの場合 ブロックスコープが無視される
+if(true) {
+  var hoge = 1;
+  var fuga = function(){
+    console.log('fuga is called');
+  }
+}
+
+fuga();
+console.log(hoge);
+
+
+// constの場合 ブロックスコープが適用されるので、{}の外で関数を実行するとエラーになる（fugafuga is not defined）
+if(true) {
+  var hogehoge = 1;
+  const fugafuga = function(){
+    console.log('fuga is called');
+  }
+}
+
+fugafuga();
+
+
+// ★ブロックスコープを適用させたい場合、varで変数宣言はできない！！！！！
