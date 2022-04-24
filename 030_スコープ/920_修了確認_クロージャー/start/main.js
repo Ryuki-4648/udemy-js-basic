@@ -47,14 +47,30 @@ console.log(calc.plus(5));
 
 // 回答例
 function calcFactory(val) {
+  // ★オブジェクトを返す★
   return {
+
+    // メソッドとして4つの関数（plus, minus, multiply, divide）を格納する
     plus: function(target){
       const newVal = val + target;
       console.log(`${val} + ${target} = ${newVal}`);
+      val = newVal; // valはplus関数、minus関数どちらからでも参照可能なレキシカルスコープに存在する
+      // それぞれのメソッドではスコープがわかれてしまうので、レキシカルスコープを通して変数の受け渡しを行う
     },
     minus: function(target){
       const newVal = val - target;
       console.log(`${val} - ${target} = ${newVal}`);
+      val = newVal;
+    },
+    multiply: function(target){
+      const newVal = val * target;
+      console.log(`${val} * ${target} = ${newVal}`);
+      val = newVal;
+    },
+    divide: function(target){
+      const newVal = val / target;
+      console.log(`${val} / ${target} = ${newVal}`);
+      val = newVal;
     }
   };
 }
@@ -62,3 +78,5 @@ function calcFactory(val) {
 const calc = calcFactory(10);
 calc.plus(5);
 calc.minus(3); 
+calc.multiply(3);
+calc.divide(2); 
