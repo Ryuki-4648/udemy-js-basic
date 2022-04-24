@@ -7,24 +7,28 @@
  * ※if文は削除してはいけません。
  */
 function fn() {
+  let a;
     if(true) {
-        let a = 'fn called';
-        return a;
+        a = 'fn called';
     }
+    return a;
     //return a; // ReferenceError: a is not defined
 }
 
 const result = fn();
 console.log(result);
 
+// 回答例
+// let a;とreturn a;が同じ関数スコープ内にあることになる
+
 /**
  * 問題２：
  * fn2内の記述を変更して、各コンソールで
  * 期待値を出力するように修正してください。
  */
-//var val = 'val1';
+var val = 'val1';
 function fn2() {
-    var val = 'val1';
+    //var val = 'val1';
     console.log(val); // 期待値->'val1'
 
     if(true) {
@@ -35,6 +39,27 @@ function fn2() {
     console.log(val); // 期待値->'val1'
 }
 fn2();
+
+
+// 解説
+// letに変えないとどうなる？
+var val02 = 'val02-1';
+function fn3() {
+    console.log(val02); // このval02が参照しているのはレキスカルスコープのvar val02 = 'val02-1';のval02である。
+
+    if(true) {
+        var val02 = 'val02-2';
+        console.log(val02);
+    }
+
+    console.log(val02);
+}
+fn3();
+/**
+ * varを使った場合、ホイスティング（巻き上げ）の作用が働く
+ * if文内でval02の値が代入されるまで、val02は「undefined」で表示される！！
+ */
+
 
 /**
  * 問題３：
@@ -78,3 +103,19 @@ increment();
 increment();
 increment();
 increment();
+
+
+
+// 回答例
+{
+  let num = 0; // プライベート変数にする。ブロックスコープを有効にし、外側からは変更できないようにする。
+  function incre(){
+    num += 1;
+    console.log('回答例: ' + num);
+  }
+}
+
+incre(); // ブロックスコープの外からでも実行可能
+incre();
+incre();
+incre();
