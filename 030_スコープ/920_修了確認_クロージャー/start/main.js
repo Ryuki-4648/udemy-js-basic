@@ -17,7 +17,7 @@
 */
 
 
-
+/* 自分の回答
 function calcFactory(number = 10) {
   let result1;
   let result2;
@@ -41,4 +41,24 @@ function calcFactory(number = 10) {
 }
 
 const calc = calcFactory(10);
-console.log(calc.plus(5)); // Uncaught TypeError: calc.plus is not a function
+console.log(calc.plus(5));
+*/
+
+
+// 回答例
+function calcFactory(val) {
+  return {
+    plus: function(target){
+      const newVal = val + target;
+      console.log(`${val} + ${target} = ${newVal}`);
+    },
+    minus: function(target){
+      const newVal = val - target;
+      console.log(`${val} - ${target} = ${newVal}`);
+    }
+  };
+}
+
+const calc = calcFactory(10);
+calc.plus(5);
+calc.minus(3); 
