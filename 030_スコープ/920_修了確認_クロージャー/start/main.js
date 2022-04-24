@@ -14,4 +14,31 @@
  * 
  * ※前に行った計算結果をもとに四則演算を行います。
  * ※四則演算は"+","-","*","/"を数値ではさんで計算を行います。
- */
+*/
+
+
+
+function calcFactory(number = 10) {
+  let result1;
+  let result2;
+  let result3;
+  let result4;
+
+  function plus(plusNum) {
+    result1 = number + plusNum;
+  }
+  function minus(minusNum) {
+    result2 = result1 - minusNum;
+  }
+  function multiply(multiplyNum) {
+    result3 = result2 * multiplyNum;
+  }
+  function divide(divideNum) {
+    result4 = result3 / divideNum;
+  }
+
+  return plus, minus, multiply, divide;
+}
+
+const calc = calcFactory(10);
+console.log(calc.plus(5)); // Uncaught TypeError: calc.plus is not a function
