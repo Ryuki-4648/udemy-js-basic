@@ -33,9 +33,8 @@ let { prop } = a;
 prop = 1;
 console.log(a, prop); // 0 1
 
-function fn(obj){
-  let { prop } = obj;
+function fn({ prop }){ // 特定のプロパティのみ使用したい場合。渡ってきたオブジェクトがこの時点で分割代入で展開される
   prop = 1; 
-  console.log(obj, prop); // 0 1
+  console.log(a, prop); // 0 1
 }
 fn(a);
