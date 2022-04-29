@@ -13,15 +13,28 @@ let obj = {
 }
 
 function minus(obj, val) {
-    let prop1 = obj.prop1;
-    prop1 = prop1 - val;
+    obj.prop1 = obj.prop1 - val;
+    console.log(obj.prop1);
 }
 
 minus(obj, 1);
 console.log(obj.prop1); // 10 - 1 = 9と表示させたい
+console.log(obj);
+
+/**
+ * 10
+ * ↑
+ * prop1
+ * ↑
+ * {}オブジェクトへの参照
+ * ↑
+ * obj
+*/
 
 
 
+
+console.log('----- 問題2 -----');
 
 /**
  * 問題２：
@@ -35,8 +48,7 @@ console.log(obj.prop1); // 10 - 1 = 9と表示させたい
 
 
 function double(obj) {
-    let { prop1 } = obj;
-    prop1 = prop1 * 2;
+    obj.prop1 = obj.prop1 * 2;
 }
 
 double(obj);
@@ -45,6 +57,8 @@ console.log(obj.prop1);
 
 
 
+
+console.log('----- 問題3 -----');
 
 /**
  * 問題３：
@@ -57,17 +71,50 @@ obj.prop2 = {
     prop3: 1
 }
 
-function fn({ prop2 }) {
-    let prop = prop2;
+/**
+ * obj = {
+ *  prop1: 18,
+ *  prop2 : {
+ *    prop3: 1 
+ *   }
+ * } 
+ * 
+ * obj = {
+ *  prop1: 18,
+ *  prop2 : {
+ *    prop3: 1 ← let prop オブジェクトへの参照をコピー
+ *   }
+ * }
+ * 
+ *  obj = {
+ *  prop1: 18,
+ *  prop2 : {
+ *    prop3: 2
+ *   }
+ * }
+ * 
+ * prop = {
+ *  prop3: 3
+ * }
+ */
+
+function fn({ prop2 }) { // objのprop2がこの時点で展開される
+    let prop = prop2; // 
     prop.prop3 = 2;
-    prop = { prop3: 3 };
-    return { prop2: prop };
+    prop = { 
+      prop3: 3 
+    };
+    return { 
+      prop2: prop 
+    };
 }
 obj = fn(obj);
-// console.log(obj.prop2.prop3);
+console.log(obj.prop2.prop3); // 3
 
 
 
+
+console.log('----- 問題4 -----');
 
 /**
  * 問題４：
@@ -79,4 +126,12 @@ function through (obj) {
 }
 
 const obj2 = through(obj);
-// console.log(obj === obj2);
+console.log(obj === obj2); // true
+
+/**
+ * obj
+ * 
+ * 
+ * obj2
+ * 参照がコピーされる
+ */
