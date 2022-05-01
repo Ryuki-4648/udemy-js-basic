@@ -48,6 +48,7 @@ console.log('----- 問題2 -----');
 
 
 function double(obj) {
+    // let { prop1 } = obj; ←新しい変数にオブジェクトのprop1の値（9）をコピーしている状態
     obj.prop1 = obj.prop1 * 2;
 }
 
@@ -99,16 +100,16 @@ obj.prop2 = {
  */
 
 function fn({ prop2 }) { // objのprop2がこの時点で展開される
-    let prop = prop2; // 
-    prop.prop3 = 2;
+    let prop = prop2; // 今回の問題文ではこの式は関係なし
+    prop.prop3 = 2; // 今回の問題文ではこの式は関係なし
     prop = { 
       prop3: 3 
-    };
+    }; // この時点でprop3には3が格納される
     return { 
       prop2: prop 
     };
 }
-obj = fn(obj);
+obj = fn(obj); // 関数fnのreturn文に続くものが返ってくる
 console.log(obj.prop2.prop3); // 3
 
 
@@ -134,4 +135,9 @@ console.log(obj === obj2); // true
  * 
  * obj2
  * 参照がコピーされる
- */
+*/
+
+/**
+ * function through (obj) のobjと、const obj2 = through(obj)のobjは同じオブジェクトへの参照を保持している
+ * return objでも同じものが帰ってくる
+*/
