@@ -12,6 +12,16 @@ const person = {
     }
 }
 
+console.log(person.hello()); // hello Tom
+const msg = console.log(person.hello()); 
+setTimeout(person.hello, 1000);
+setTimeout(console.log(person.hello()), 1000);
+setTimeout(msg, 1000);
+setTimeout(function(){return 'hello Tom';}, 1000); 
+
+setTimeout(function(){person.hello},1000);
+
+
 // setTimeout(/** ここに追記 */, 1000);
 
 /**
@@ -25,6 +35,7 @@ const person = {
  * 示する関数です。
  */
 
+//setTimeout(alert(person.hello()), 1000); すぐアラートが出てしまう
 
 /**
  * 問題３：
@@ -47,6 +58,8 @@ function after1s(callack) {
 
 // この時点で実行します。
 // after1s(obj.greeting);
+
+// heyが出力される。after1s関数の実行の前に下の書き換えが行われるため
 
 // この後でgreetingを書き換えます。
 obj.greeting = function() {
@@ -94,3 +107,12 @@ calc.minus(3);
 calc.multiply(3);
 calc.divide(2);
 
+
+function callback1(fn1) {
+  console.log(fn1());
+}
+function callback2(fn2) {
+  alert(fn2());
+}
+
+callback1(calcFactory(20));
