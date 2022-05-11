@@ -27,6 +27,15 @@ const person = {
     
 }
 
+person.hello1s = {};
+
+let hello1s = () => {
+  console.log('hello' + this.name);
+}
+
+
+
+
 /**
  * 問題１：
  * 1秒後に"hello Tom"
@@ -35,13 +44,32 @@ const person = {
  */
 setTimeout(person.hello, 1000);
 
+setTimeout(function(){
+  const hello = person.hello('hello');
+  console.log(hello); // hello Tom
+}, 1000);
+
+
+
+
+
+
 /**
  * 問題２：
  * alertで"hello Tom"
  * と出力されるように、
  * 以下のコードを変更してください。
  */
-alert(person.hello);
+//alert(person.hello);
+
+setTimeout(function(){
+  const alertHello = person.hello('hello');
+  /// alert(alertHello);  // hello Tom
+}, 1000);
+
+
+
+
 
 /**
  * 問題３：
@@ -49,5 +77,12 @@ alert(person.hello);
  * bindを使って束縛してみましたが、コンソールには
  * "Bye"しか表示されませんでした。
  * "Bye Tom"とするためにはどうすればよいでしょうか？
- */
-setTimeout(person.bye.bind(person), 1000);
+*/
+
+const byeTom = person.bye.bind(person);
+
+function fn(ref) {
+  setTimeout(ref, 1000);
+}
+
+fn(byeTom);
