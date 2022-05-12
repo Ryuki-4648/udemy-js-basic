@@ -46,12 +46,12 @@ function increment(){
 }
 
 // これだと「１」が３回出力されてしまう
-// 関数の中で変数numを宣言してしまっているので、numは０になる
-// 関数がよばれるたびに初期化するのではなく、グローバルテキストが実行されるタイミングで初期化を行えば良い。
+// ★★★ 関数の中で変数numを宣言してしまっているので、numは０になる！！！！
+// ★★★ 関数がよばれるたびに初期化するのではなく、グローバルテキストが実行されるタイミングで初期化を行えば良い。
 
 
 // カウントアップする関数を作成したい(2)
-let number = 0;
+let number = 0; // グローバルコンテキストが実行する段階でnumの初期化を行う！！
 incrementFunc();
 incrementFunc();
 incrementFunc();
@@ -63,13 +63,16 @@ function incrementFunc() {
 
 
 /**
- * numberがグローバルテキストのため、関数を通さずにどこからでもアクセス可能になる
- * 　↓　解決方法
+ * ↑のやり方だと問題がでてくる
+ * 
+ * numberが関数を通さずにどこからでもアクセス可能になる（ソースコードのどこからでも変更可能な状態）
+ * 　↓　
+ * 解決方法
  * プライベート変数という、関数の内部に変数を持ちながら、外部からはアクセスできないような仕組みをクロージャーを使って実装する
 */
 
 
-console.log('---------- クロージャーを用いる ----------');
+console.log('---------- クロージャーを用いる場合 ----------');
 
 
 // クロージャーを用いる
@@ -82,12 +85,12 @@ function incrementFactory() {
     console.log(number);
   }
 
-  return increment02; // 関数の返却
+  return increment02; // ★関数の返却！！
 }
 
 const increment02 = incrementFactory(); // numberの宣言はここだけ
 // incrementFactoryを実行すると、numberの宣言が行われ、increment02の宣言が行われ、returnでincrement02が返ってくる
-// const increment02には返却された関数increment02が入っている
+// const increment02には「返却された関数increment02」が入っている
 
 increment02(); // 返却された関数increment02を実行している。numberの初期化は行われていない。
 increment02();
