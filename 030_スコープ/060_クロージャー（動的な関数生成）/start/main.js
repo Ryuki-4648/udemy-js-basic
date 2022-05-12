@@ -6,13 +6,17 @@ function addNumberFactory(num){
 }
 
 const add5 = addNumberFactory(5);
+console.log(add5); // ƒ addNumber(value){ return num + value; }
+console.log(addNumberFactory(5)); // ƒ addNumber(value){ return num + value; }
+
 const result = add5(10); // addNumber(10)と同じ意味
-console.log(result);
+console.log(result); // 15
+
 
 /**
  * 解説
  * 
- * addNumberFactoryに５を渡しているので、function addNumberFactory(num)のnumには５が入る
+ * addNumberFactoryに５を渡しているので、numには５が入る
  * 
  * function addNumberFactory(5){
     function addNumber(value){
@@ -23,7 +27,7 @@ console.log(result);
  * ↓
  * returnされているので、最終的には「addNumber」が返却される
  * ↓
- * add5には、「numに5が設定されている状態のaddNumber関数」が格納されている
+ * ★add5には、「numに5が設定されている状態のaddNumber関数」が格納されている
  * function addNumber(value){
     return 5 + value;
   }
