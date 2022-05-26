@@ -52,3 +52,37 @@ function loginController(user) {
     console.log('login failed');
   }
 }
+
+
+class User {
+  constructor(user){
+    this.user = user;
+  }
+  login(){
+    console.log(this.user);
+  }
+  checkRoll(){
+    console.log('you have normal roll');
+  }
+  redirect(){
+    console.log('/');
+  }
+}
+
+class AdminUser {
+  constructor(user){
+    this.user = user;
+  }
+  login(){
+    console.log(this.user);
+  }
+  checkRoll(){
+    console.log('you have admin roll');
+  }
+  redirect(){
+    console.log('/admin');
+  }
+}
+
+loginController(new User('Bob'));
+loginController(new AdminUser('Bob'));
