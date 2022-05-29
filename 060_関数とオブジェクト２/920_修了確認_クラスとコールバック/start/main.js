@@ -10,14 +10,23 @@
  */
 class Person {
   constructor(name, age) {
-      this.name = name;
-      this.age = age;
+    this.name = name;
+    this.age = age;
   }
 
   hello() {
-      console.log('hello ' + this.name);
+    console.log('hello ' + this.name);
   }
 }
 
 const bob = new Person('Bob', 23);
-setTimeout(bob.hello, 1000);
+const call = bob.hello();
+setTimeout(call, 1000);
+
+console.log(bob); // Person {name: 'Bob', age: 23}
+console.log(bob.hello);
+/**
+ *  ƒ hello(name) {
+      console.log('hello ' + this.name);
+    }
+ */
