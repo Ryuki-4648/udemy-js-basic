@@ -86,3 +86,18 @@ class AdminUser {
 
 loginController(new User('Bob'));
 loginController(new AdminUser('Bob'));
+
+
+console.log('----- User -----');
+const call1 = new User('Bob');
+console.log(call1);
+call1.login();
+call1.checkRoll();
+call1.redirect();
+
+console.log('----- AdminUser -----');
+const call2 = new AdminUser('Bob');
+console.log(call2);
+call2.login();
+call2.checkRoll();
+call2.redirect();
