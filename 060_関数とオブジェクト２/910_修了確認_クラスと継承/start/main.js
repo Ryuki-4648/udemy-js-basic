@@ -57,35 +57,58 @@ function loginController(user) {
 class User {
   constructor(user){
     this.user = user;
+    this.redirectTo = '/';
   }
   login(){
-    console.log(this.user);
+    console.log(`User : ${this.user}`);
+    return true; // 成功した時失敗した時true/falseで結果を返す
   }
   checkRoll(){
     console.log('you have normal roll');
+    return true;
   }
   redirect(){
-    console.log('/');
+    console.log(`redirect : ${this.redirectTo}`);
+    return true;
   }
 }
 
-class AdminUser {
+console.log('----- User -----');
+loginController(new User('Bob'));
+/**  
+ *  User : Bob
+    main.js:67 you have normal roll
+    main.js:71 redirect : /
+    main.js:50 login success
+*/
+
+
+
+
+class AdminUser extends User {
   constructor(user){
-    this.user = user;
-  }
-  login(){
-    console.log(this.user);
+    super(user);
+    this.redirectTo = '/admin';
   }
   checkRoll(){
     console.log('you have admin roll');
-  }
-  redirect(){
-    console.log('/admin');
+    return true;
   }
 }
 
-loginController(new User('Bob'));
+console.log('----- AdminUser -----');
 loginController(new AdminUser('Bob'));
+/**
+ *  User : Bob
+    main.js:94 you have admin roll
+    main.js:71 redirect : /admin
+    main.js:50 login success
+ */
+
+
+
+//loginController(new User('Bob'));
+//loginController(new AdminUser('Bob'));
 
 
 console.log('----- User -----');
