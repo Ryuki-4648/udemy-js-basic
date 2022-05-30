@@ -22,9 +22,34 @@
  * 	.set(3) -> '7'を出力
  * 	.mutiply()
  * 	.set(6) -> '42'を出力（10 - 3) * 6
- */
+*/
 
-const calc = new Calculator();
+class Calculator{
+  constructor(num){
+    this.num = num;
+  }
+  set(){
+    console.log(this.num);
+  }
+  minus(minusNum){
+    console.log(`${num} - ${minusNum}`);
+    return this;
+  }
+  mutiply(){
+    console.log(`${num} * ${multiplyNum}`);
+    return this;
+  }
+  devide(devideNum){
+    console.log(`${num} / ${devideNum}`);
+    return this;
+  }
+  plus(plusNum){
+    console.log(`${num} + ${plusNum}`);
+    return this;
+  }
+}
+
+const calc = new Calculator(10);
 
 calc.set(10)
 	.minus()
