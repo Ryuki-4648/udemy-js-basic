@@ -2,7 +2,7 @@
  * 反復可能オブジェクト（イテレーター）
 */
 
-/*
+
 const obj2 = {
 	prop1: 'value1',
 	prop2: 'value2',
@@ -13,7 +13,7 @@ const items2 = Object.entries(obj2); // 配列に変換
 for (let item2 of items2) { // 配列をfor...ofループ
 	console.log(item2);
 }
-*/
+
 
 
 
