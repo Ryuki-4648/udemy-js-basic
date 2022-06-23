@@ -38,7 +38,35 @@
  * library process
  * customFn3
  * 
- */
+*/
+
+
+// 回答
+const events = (function(){ // 即時関数
+  const eventStack = new Map();
+
+  return {
+    on(type, fn){
+      const fnStack = eventStack.get(type) || new Set(); // Setとすることで、fnにわたってきた関数をどんどん登録できるようにする
+      fnStack.add(fn);
+      eventStack.set(type, fnStack); // 一つのトリガーに対して複数の関数を登録できる
+    },
+    off(type, fn){
+      const fnStack = eventStack.get(type);
+      if(fnStack && fnStack.has(fn)) {
+        fnStack.delete(fn);
+      }
+    },
+    emit(type){
+      const fnStack = eventStack.get(type);
+      if(fnStack) {
+        for(const fn of fnStack) {
+          fn();
+        }
+      }
+    }
+  }
+})();
 
 class MyLibrary {
 	constructor() {
